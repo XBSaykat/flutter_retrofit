@@ -6,6 +6,7 @@ A Flutter application For Api Connect.
 
 Api Demo: https://jsonplaceholder.typicode.com/photos
 
+```bash
 [
   {
     "albumId": 1,
@@ -22,3 +23,6 @@ Api Demo: https://jsonplaceholder.typicode.com/photos
     "thumbnailUrl": "https://via.placeholder.com/150/771796"
   }
 ]
+```
+
+
