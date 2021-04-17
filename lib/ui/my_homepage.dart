@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_retrofit/network/api/api_service.dart';
 import 'package:flutter_retrofit/network/model/album_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import 'detail_screen.dart';
+
 class MyHomePage extends StatelessWidget {
+  late AlbumModel alldata;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,12 +66,19 @@ class MyHomePage extends StatelessWidget {
           return Card(
             child: new InkWell(
               onTap: (){
-                Fluttertoast.showToast(
+                /*Fluttertoast.showToast(
                   msg: data[index].title,
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   fontSize: 16.0,
-                );
+                );*/
+               /* Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(),
+                  settings: RouteSettings(arguments: data[index]),
+                ));*/
+                alldata = data[index];
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailScreen(alldata : data[index]),
+                ));
               },
               child: Container(
                 padding: EdgeInsets.all(10.0),
