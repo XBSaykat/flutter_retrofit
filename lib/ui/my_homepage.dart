@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_retrofit/network/api/api_service.dart';
 import 'package:flutter_retrofit/network/model/album_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -30,8 +31,7 @@ class MyHomePage extends StatelessWidget {
   FutureBuilder _listFutureAlbum(BuildContext context) {
     return FutureBuilder<List<AlbumModel>>(
       future: Provider.of<ApiService>(context, listen: false).getAll(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<AlbumModel>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<AlbumModel>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             return Container(
@@ -59,11 +59,21 @@ class MyHomePage extends StatelessWidget {
         itemCount: data!.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: Container(
-              padding: EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: Image.network(data[index].thumbnailUrl),
-                title: Text(data[index].title),
+            child: new InkWell(
+              onTap: (){
+                Fluttertoast.showToast(
+                  msg: data[index].title,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  fontSize: 16.0,
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                child: ListTile(
+                  leading: Image.network(data[index].thumbnailUrl),
+                  title: Text(data[index].title),
+                ),
               ),
             ),
           );

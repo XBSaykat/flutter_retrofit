@@ -19,6 +19,7 @@ dependencies:
   logger: ^1.0.0
   pretty_dio_logger: ^1.1.1
   dio: ^4.0.0
+  fluttertoast: ^8.0.4
 
 dev_dependencies:
   flutter_test:
